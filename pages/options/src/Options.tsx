@@ -26,7 +26,7 @@ const TABS: {
   { id: "models", icon: FiCpu, label: t("options_tabs_models") },
   { id: "firewall", icon: FiShield, label: t("options_tabs_firewall") },
   { id: "analytics", icon: FiTrendingUp, label: "Analytics" },
-  { id: "help", icon: FiHelpCircle, label: t("options_tabs_help") },
+  // { id: "help", icon: FiHelpCircle, label: t("options_tabs_help") },
 ];
 
 const Options = () => {

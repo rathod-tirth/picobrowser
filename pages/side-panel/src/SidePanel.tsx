@@ -1107,14 +1107,15 @@ const SidePanel = () => {
                 </button>
               </>
             )}
-            <a
+            {/* DISCORD ICON */}
+            {/* <a
               href="https://discord.gg/NN3ABHggMK"
               target="_blank"
               rel="noopener noreferrer"
               className={`header-icon ${isDarkMode ? "text-sky-400 hover:text-sky-300" : "text-sky-400 hover:text-sky-500"}`}
             >
               <RxDiscordLogo size={20} />
-            </a>
+            </a> */}
             <button
               type="button"
               onClick={() => chrome.runtime.openOptionsPage()}
@@ -1181,7 +1182,8 @@ const SidePanel = () => {
                   >
                     {t("welcome_openSettings")}
                   </button>
-                  <div className="mt-4 text-sm opacity-75">
+                  {/* QUICK GUIDE and DISCORD LINKS */}
+                  {/* <div className="mt-4 text-sm opacity-75">
                     <a
                       href="https://github.com/nanobrowser/nanobrowser?tab=readme-ov-file#-quick-start"
                       target="_blank"
@@ -1199,7 +1201,7 @@ const SidePanel = () => {
                     >
                       {t("welcome_joinCommunity")}
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}

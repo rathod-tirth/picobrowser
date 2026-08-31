@@ -75,6 +75,7 @@ export class Executor {
 
     this.generalSettings = extraArgs?.generalSettings;
     this.tasks.push(task);
+
     this.navigatorPrompt = new NavigatorPrompt(
       context.options.maxActionsPerStep,
     );
@@ -84,6 +85,11 @@ export class Executor {
     const navigatorActionRegistry = new NavigatorActionRegistry(
       actionBuilder.buildDefaultActions(),
     );
+
+    console.log(actionBuilder);
+    console.log(navigatorActionRegistry);
+    console.log(this.navigatorPrompt);
+    console.log(this.plannerPrompt);
 
     // Initialize agents with their respective prompts
     this.navigator = new NavigatorAgent(navigatorActionRegistry, {
@@ -97,6 +103,10 @@ export class Executor {
       context: context,
       prompt: this.plannerPrompt,
     });
+
+    console.log(this.navigator);
+    console.log(this.planner);
+    console.log(context);
 
     this.context = context;
     // Initialize message history
