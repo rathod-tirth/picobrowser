@@ -15,7 +15,8 @@ import { ModelSettings } from "./components/ModelSettings";
 import { FirewallSettings } from "./components/FirewallSettings";
 import { AnalyticsSettings } from "./components/AnalyticsSettings";
 
-type TabTypes = "general" | "models" | "firewall" | "analytics" | "help";
+// type TabTypes = "general" | "models" | "firewall" | "analytics" | "help";
+type TabTypes = "general" | "models";
 
 const TABS: {
   id: TabTypes;
@@ -24,8 +25,8 @@ const TABS: {
 }[] = [
   { id: "general", icon: FiSettings, label: t("options_tabs_general") },
   { id: "models", icon: FiCpu, label: t("options_tabs_models") },
-  { id: "firewall", icon: FiShield, label: t("options_tabs_firewall") },
-  { id: "analytics", icon: FiTrendingUp, label: "Analytics" },
+  // { id: "firewall", icon: FiShield, label: t("options_tabs_firewall") },
+  // { id: "analytics", icon: FiTrendingUp, label: "Analytics" },
   // { id: "help", icon: FiHelpCircle, label: t("options_tabs_help") },
 ];
 
@@ -49,11 +50,12 @@ const Options = () => {
   }, []);
 
   const handleTabClick = (tabId: TabTypes) => {
-    if (tabId === "help") {
-      window.open("https://nanobrowser.ai/docs", "_blank");
-    } else {
-      setActiveTab(tabId);
-    }
+    // if (tabId === "help") {
+    //   window.open("https://nanobrowser.ai/docs", "_blank");
+    // } else {
+    //   setActiveTab(tabId);
+    // }
+    setActiveTab(tabId);
   };
 
   const renderTabContent = () => {
@@ -62,10 +64,10 @@ const Options = () => {
         return <GeneralSettings isDarkMode={isDarkMode} />;
       case "models":
         return <ModelSettings isDarkMode={isDarkMode} />;
-      case "firewall":
-        return <FirewallSettings isDarkMode={isDarkMode} />;
-      case "analytics":
-        return <AnalyticsSettings isDarkMode={isDarkMode} />;
+      // case "firewall":
+      //   return <FirewallSettings isDarkMode={isDarkMode} />;
+      // case "analytics":
+      //   return <AnalyticsSettings isDarkMode={isDarkMode} />;
       default:
         return null;
     }
