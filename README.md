@@ -1,268 +1,51 @@
-<h1 align="center">
-    <img src="https://github.com/user-attachments/assets/ec60b0c4-87ba-48f4-981a-c55ed0e8497b" height="100" width="375" alt="banner" /><br>
-</h1>
-
-
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nanobrowser)
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/nanobrowser_ai)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/NN3ABHggMK)
-[<img src="https://deepwiki.com/badge.svg" height="28" alt="Ask DeepWiki">](https://deepwiki.com/nanobrowser/nanobrowser)
-[![Sponsor](https://img.shields.io/badge/Sponsor-ff69b4?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/alexchenzl)
-
-</div>
-
-## 🌐 Nanobrowser
-
-Nanobrowser is an open-source AI web automation tool that runs in your browser. A free alternative to OpenAI Operator with flexible LLM options and multi-agent system.
-
-⬇️ Get [Nanobrowser from Chrome Web Store](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal) for free
-
-👏 Join the community in [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
-
-🌟 Loving Nanobrowser? Give us a star  and help spread the word!
-
-❤️ Support the project by [sponsoring us](https://github.com/sponsors/alexchenzl) - every contribution helps keep Nanobrowser free and open source!
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Nanobrowser Demo GIF" />
-<p><em>Nanobrowser's multi-agent system analyzing HuggingFace in real-time, with the Planner intelligently self-correcting when encountering obstacles and dynamically instructing the Navigator to adjust its approach—all running locally in your browser.</em></p>
-</div>
-
-## 🔥Why Nanobrowser?
-
-Looking for a powerful AI browser agent without the $200/month price tag of OpenAI Operator? **Nanobrowser** , as a chrome extension, delivers premium web automation capabilities while keeping you in complete control:
-
-- **100% Free** - No subscription fees or hidden costs. Just install and use your own API keys, and you only pay what you use with your own API keys.
-- **Privacy-Focused** - Everything runs in your local browser. Your credentials stay with you, never shared with any cloud service.
-- **Flexible LLM Options** - Connect to your preferred LLM providers with the freedom to choose different models for different agents.
-- **Fully Open Source** - Complete transparency in how your browser is automated. No black boxes or hidden processes.
-
-> **Note:** We currently support OpenAI, Anthropic, Gemini, Ollama, Groq, Cerebras, Llama and custom OpenAI-Compatible providers, more providers will be supported.
-
-
-## 📊 Key Features
-
-- **Multi-agent System**: Specialized AI agents collaborate to accomplish complex web workflows
-- **Interactive Side Panel**: Intuitive chat interface with real-time status updates
-- **Task Automation**: Seamlessly automate repetitive web automation tasks across websites
-- **Follow-up Questions**: Ask contextual follow-up questions about completed tasks
-- **Conversation History**: Easily access and manage your AI agent interaction history
-- **Multiple LLM Support**: Connect your preferred LLM providers and assign different models to different agents
-
-
-## 🌐 Browser Support
-
-**Officially Supported:**
-- **Chrome** - Full support with all features
-- **Edge** - Full support with all features
-
-**Not Supported:**
-- Firefox, Safari, and other Chromium variants (Opera, Arc, etc.)
-
-> **Note**: While Nanobrowser may function on other Chromium-based browsers, we recommend using Chrome or Edge for the best experience and guaranteed compatibility.
-
-
-## 🚀 Quick Start
-
-1. **Install from Chrome Web Store** (Stable Version):
-   * Visit the [Nanobrowser Chrome Web Store page](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal)
-   * Click "Add to Chrome" button
-   * Confirm the installation when prompted
-
-> **Important Note**: For latest features, install from ["Manually Install Latest Version"](#-manually-install-latest-version) below, as Chrome Web Store version may be delayed due to review process.
-
-2. **Configure Agent Models**:
-   * Click the Nanobrowser icon in your toolbar to open the sidebar
-   * Click the `Settings` icon (top right)
-   * Add your LLM API keys
-   * Choose which model to use for different agents (Navigator, Planner)
-
-## 🔧 Manually Install Latest Version
-
-To get the most recent version with all the latest features:
-
-1. **Download**
-    * Download the latest `nanobrowser.zip` file from the official Github [release page](https://github.com/nanobrowser/nanobrowser/releases).
-
-2. **Install**:
-    * Unzip `nanobrowser.zip`.
-    * Open `chrome://extensions/` in Chrome
-    * Enable `Developer mode` (top right)
-    * Click `Load unpacked` (top left)
-    * Select the unzipped `nanobrowser` folder.
-
-3. **Configure Agent Models**
-    * Click the Nanobrowser icon in your toolbar to open the sidebar
-    * Click the `Settings` icon (top right).
-    * Add your LLM API keys.
-    * Choose which model to use for different agents (Navigator, Planner)
-
-4. **Upgrading**:
-    * Download the latest `nanobrowser.zip` file from the release page.
-    * Unzip and replace your existing Nanobrowser files with the new ones.
-    * Go to `chrome://extensions/` in Chrome and click the refresh icon on the Nanobrowser card.
-
-## 🛠️ Build from Source
-
-If you prefer to build Nanobrowser yourself, follow these steps:
-
-1. **Prerequisites**:
-   * [Node.js](https://nodejs.org/) (v22.12.0 or higher)
-   * [pnpm](https://pnpm.io/installation) (v9.15.1 or higher)
-
-2. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/nanobrowser/nanobrowser.git
-   cd nanobrowser
-   ```
-
-3. **Install Dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-4. **Build the Extension**:
-   ```bash
-   pnpm build
-   ```
-
-5. **Load the Extension**:
-   * The built extension will be in the `dist` directory
-   * Follow the installation steps from the Manually Install section to load the extension into your browser
-
-6. **Development Mode** (optional):
-   ```bash
-   pnpm dev
-   ```
-
-## 🤖 Choosing Your Models
-
-Nanobrowser allows you to configure different LLM models for each agent to balance performance and cost. Here are recommended configurations:
-
-### Better Performance
-- **Planner**: Claude Sonnet 4
-  - Better reasoning and planning capabilities
-- **Navigator**: Claude Haiku 3.5
-  - Efficient for web navigation tasks
-  - Good balance of performance and cost
-
-### Cost-Effective Configuration
-- **Planner**: Claude Haiku or GPT-4o
-  - Reasonable performance at lower cost
-  - May require more iterations for complex tasks
-- **Navigator**: Gemini 2.5 Flash or GPT-4o-mini
-  - Lightweight and cost-efficient
-  - Suitable for basic navigation tasks
-
-### Local Models
-- **Setup Options**:
-  - Use Ollama or other custom OpenAI-compatible providers to run models locally
-  - Zero API costs and complete privacy with no data leaving your machine
-
-- **Recommended Models**:
-  - **Qwen3-30B-A3B-Instruct-2507**
-  - **Falcon3 10B**
-  - **Qwen 2.5 Coder 14B**
-  - **Mistral Small 24B**
-  - [Latest test results from community](https://gist.github.com/maximus2600/75d60bf3df62986e2254d5166e2524cb) 
-  - We welcome community experience sharing with other local models in our [Discord](https://discord.gg/NN3ABHggMK)
-
-- **Prompt Engineering**:
-  - Local models require more specific and cleaner prompts
-  - Avoid high-level, ambiguous commands
-  - Break complex tasks into clear, detailed steps
-  - Provide explicit context and constraints
-
-> **Note**: The cost-effective configuration may produce less stable outputs and require more iterations for complex tasks.
-
-> **Tip**: Feel free to experiment with your own model configurations! Found a great combination? Share it with the community in our [Discord](https://discord.gg/NN3ABHggMK) to help others optimize their setup.
-
-## 💡 See It In Action
-
-Here are some powerful tasks you can accomplish with just a sentence:
-
-1. **News Summary**:
-   > "Go to TechCrunch and extract top 10 headlines from the last 24 hours"
-
-2. **GitHub Research**:
-   > "Look for the trending Python repositories on GitHub with most stars"
-
-3. **Shopping Research**:
-   > "Find a portable Bluetooth speaker on Amazon with a water-resistant design, under $50. It should have a minimum battery life of 10 hours"
-
-## 🛠️ Roadmap
-
-We're actively developing Nanobrowser with exciting features on the horizon, welcome to join us! 
-
-Check out our detailed roadmap and upcoming features in our [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions/85). 
-
-## 🤝 Contributing
-
-**We need your help to make Nanobrowser even better!**  Contributions of all kinds are welcome:
-
-*  **Share Prompts & Use Cases** 
-   * Join our [Discord server](https://discord.gg/NN3ABHggMK).
-   * share how you're using Nanobrowser.  Help us build a library of useful prompts and real-world use cases.
-*  **Provide Feedback** 
-   * Try Nanobrowser and give us feedback on its performance or suggest improvements in our [Discord server](https://discord.gg/NN3ABHggMK).
-* **Contribute Code**
-   * Check out our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute code to the project.
-   * Submit pull requests for bug fixes, features, or documentation improvements.
-
-
-We believe in the power of open source and community collaboration.  Join us in building the future of web automation!
-
-
-## 🔒 Security
-
-If you discover a security vulnerability, please **DO NOT** disclose it publicly through issues, pull requests, or discussions.
-
-Instead, please create a [GitHub Security Advisory](https://github.com/nanobrowser/nanobrowser/security/advisories/new) to report the vulnerability responsibly. This allows us to address the issue before it's publicly disclosed.
-
-We appreciate your help in keeping Nanobrowser and its users safe!
-
-## 💬 Community
-
-Join our growing community of developers and users:
-
-- [Discord](https://discord.gg/NN3ABHggMK) - Chat with team and community
-- [Twitter](https://x.com/nanobrowser_ai) - Follow for updates and announcements
-- [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions) - Share ideas and ask questions
-
-## 👏 Acknowledgments
-
-Nanobrowser builds on top of other awesome open-source projects:
-
-- [Browser Use](https://github.com/browser-use/browser-use)
-- [Puppeteer](https://github.com/EmergenceAI/Agent-E)
-- [Chrome Extension Boilerplate](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite)
-- [LangChain](https://github.com/langchain-ai/langchainjs)
-
-Huge thanks to their creators and contributors!
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-Made with ❤️ by the Nanobrowser Team. 
-
-Like Nanobrowser? Give us a star 🌟 and join us in [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
-
-## 🔗 Our Other Products
-
-- [DSH Plugin Directory](https://dsh.directory/): Discover installable community plugins for DeepSeek Harness by category, popularity, and activity.
-
-## ⚠️ DISCLAIMER ON DERIVATIVE PROJECTS
-
-**We explicitly *DO NOT* endorse, support, or participate in any** projects involving cryptocurrencies, tokens, NFTs, or other blockchain-related applications **based on this codebase.**
-
-**Any such derivative projects are NOT Affiliated with, or maintained by, or in any way connected to the official Nanobrowser project or its core team.**
-
-**We assume NO LIABILITY for any losses, damages, or issues arising from the use of third-party derivative projects. Users interact with these projects at their own risk.**
-
-**We reserve the right to publicly distance ourselves from any misuse or misleading use of our name, codebase, or brand.**
-
-We encourage open-source innovation but urge our community to be discerning and cautious. Please ensure you understand the risks before using any software or service built upon our codebase by independent developers.
-
+PicoBrowser 🛡️🤖: Architecting a Privacy-Preserving AI Web Automation ExtensionPicoBrowser represents a technological advancement in client-side AI web automation, operating as an open-source Google Chrome Extension compliant with Manifest V3 standards. Built upon the foundational multi-agent framework of NanoBrowser, PicoBrowser addresses the critical privacy vulnerabilities inherent in cloud-based web automation by establishing an on-device data sanitization layer. By integrating client-side machine learning via transformers.js, ONNX Runtime Web, and WebGPU hardware acceleration, the extension executes real-time Personally Identifiable Information (PII) detection and redaction using the local openai/privacy-filter token-classification model prior to transmitting contextual payloads to remote Large Language Models (LLMs).Project Overview & Architectural Vision 🌐The rapid emergence of AI-driven web agents has transformed automated browser interaction, enabling autonomous web scraping, form submission, and complex navigational workflows. However, conventional agent architectures require streaming active Document Object Model (DOM) trees, interactive input values, and screen captures directly to external cloud inference APIs. This workflow introduces severe security risks when web pages contain sensitive data such as full names, email addresses, phone numbers, payment credentials, or authentication tokens.PicoBrowser resolves this fundamental conflict between automation capability and data privacy by establishing a localized security boundary within the client runtime. Operating directly within the user's browser, PicoBrowser intercepts all contextual data captured by the agent system. Before any context is exposed to an external network endpoint, a locally hosted neural network evaluates the text stream and replaces sensitive identifiers with ephemeral surrogate tokens. External LLMs operate exclusively on sanitized structural representations. When the cloud-hosted reasoning engine emits navigational or text-entry actions directed at these surrogate tokens, PicoBrowser dynamically re-hydrates the original sensitive values from a secure, local key-value dictionary immediately prior to DOM execution.Core Technical Innovations & Features ✨The system architecture of PicoBrowser incorporates several technical mechanisms designed to achieve high-throughput local inference and deterministic browser control:🛡️ Client-Side PII Masking & Local Unredaction: Executes bidirectional token redaction directly within the extension's execution context using the openai/privacy-filter model. PII entities are replaced with deterministic placeholder tokens, maintaining structural context for the remote LLM while completely insulating sensitive user payload data from third-party observation.⚡ Hardware-Accelerated In-Browser Inference: Utilizes transformers.js bound to ONNX Runtime Web with WebGPU execution providers. This pipeline enables low-latency neural network inference on modern GPUs directly inside the browser environment, bypassing server-side compute dependencies.🤖 Hierarchical Multi-Agent Orchestration: Inherits and refines the multi-agent orchestration architecture of NanoBrowser, splitting operational workloads between a Planner LLM and a Navigator LLM. The Planner breaks down high-level user commands into discrete sub-goals, while the Navigator translates sub-goals into precise DOM element interactions.🔒 Comprehensive Input & Output Validation: Incorporates multi-tier schema and semantic validation layers across all model interactions. Inputs and outputs from both local neural networks and external LLMs undergo runtime validation to prevent prompt injection attacks, schema corruption, and erratic browser actions.🔌 Provider-Agnostic Model Connectivity: Supports arbitrary LLM integration, enabling users to pair client-side privacy filtering with cloud backends (such as OpenAI, Anthropic, or Google Gemini) or locally hosted endpoints (via Ollama, vLLM, or custom OpenAI-compatible interfaces).📦 Modern Extension Stack: Built on Chrome Manifest V3 using TypeScript, React, and Vite bundling to deliver a modular extension architecture with responsive side-panel user interfaces.Technical Stack & Infrastructure Specifications 🛠️The technical stack of PicoBrowser balances low-level client compute efficiency with high-level web agent control. The extension avoids legacy background page patterns by fully adhering to Chrome Manifest V3 service worker models.System LayerTechnology / LibraryFunctional ResponsibilityExtension FrameworkChrome Manifest V3, SidePanel APIHost integration, persistent side-panel rendering, and DOM manipulation.Frontend UI CoreReact 18, TypeScript, ViteInteractive user controls, real-time agent status streaming, and settings management.Local Machine Learningtransformers.js, ONNX Runtime WebClient-side model loading, tensor processing, and token classification execution.Hardware AccelerationWebGPU / WebAssembly (WASM)GPU-accelerated tensor operations within the browser runtime.Local Privacy Modelopenai/privacy-filter[cite: 5]Token-level Named Entity Recognition (NER) for identifying PII boundaries.Base Extension CoreNanoBrowser ArchitectureMulti-agent coordination, page state extraction, and action execution engines.Build & Toolingpnpm, Vite BundlerModule resolution, WebAssembly/ONNX asset management, and extension packaging.End-to-End PII Redaction & Multi-Agent Workflow 🔄The execution lifecycle of a user request within PicoBrowser follows a dual-loop pattern that decouples general cognitive reasoning from sensitive data management.[User Prompt & Page DOM] 
+         │
+         ▼
+┌────────────────────────────────────────────────────────┐
+│ Local WebGPU Runtime (transformers.js / ONNX)         │
+│ Model: openai/privacy-filter                           │
+│ Action: Token Classification & PII Entity Detection    │
+└────────────────────────────────────────────────────────┘
+         │
+         ├───► [Store Original PII Mapping in Local Ephemeral Key-Value Vault]
+         │
+         ▼
+[Sanitized / Redacted Context Payload]
+         │
+         ▼
+┌────────────────────────────────────────────────────────┐
+│ Remote / Local Multi-Agent LLM System                  │
+│ 1. Planner LLM: Decomposes task into sub-goals         │
+│ 2. Navigator LLM: Generates target DOM action schema   │
+└────────────────────────────────────────────────────────┘
+         │
+         ▼
+[Redacted Action Payload: e.g., TYPE "<EMAIL_1>" INTO "#email"]
+         │
+         ▼
+┌────────────────────────────────────────────────────────┐
+│ Local PicoBrowser Security Interceptor                 │
+│ Action: Query Key-Value Vault & Re-hydrate Original PII│
+└────────────────────────────────────────────────────────┘
+         │
+         ▼
+[Unredacted Action Payload: TYPE "user@example.com" INTO "#email"]
+         │
+         ▼
+[Validated DOM Action Execution in Browser Tab]
+1. User Command & Context ExtractionThe execution flow begins when the user submits an natural language command through the React-based side-panel interface. The extension captures the active tab's accessibility tree, DOM layout, and relevant context state.2. Local PII Detection & Token MaskingThe extracted text and user instructions are routed to the local background thread running transformers.js. The openai/privacy-filter model processes the input text as a stream of tokens, identifying entity boundaries corresponding to personal names, email addresses, phone numbers, locations, and financial data. Each detected PII sequence is replaced with a standard identifier token (for example, replacing John Doe with <NAME_1> and john@example.com with <EMAIL_1>).3. Ephemeral Key-Value MappingSimultaneously, PicoBrowser writes the mapping pair (<TOKEN_ID> ↔ Original_PII) to an in-memory storage dictionary managed within the extension's local state. This key-value vault is isolated from external network interfaces and remains scoped to the active task execution context.4. Sanitized Context Transmission & Multi-Agent PlanningThe scrubbed prompt and anonymized DOM context are forwarded to the external LLM pipeline. The multi-agent workflow operates in two phases:The Planner LLM: Reads the anonymized task objective, evaluates the high-level page structure, and constructs a structured plan consisting of logical steps.The Navigator LLM: Receives individual plan steps alongside specific page element selectors to output concrete browser interactions (such as mouse clicks, keyboard entry, or page scrolling).5. Interception & Local UnredactionWhen the Navigator LLM returns an action payload containing token placeholders (such as TYPE "<EMAIL_1>" INTO "#input-email"), PicoBrowser's local execution layer intercepts the command before it reaches the target web page. The extension queries the local key-value store, replaces <EMAIL_1> with john@example.com, and resolves the action payload to its functional state.6. Multi-Tier Validation & Action ExecutionBefore performing the unredacted DOM action, PicoBrowser passes the command through an internal validation system. This module verifies that the target DOM element exists, validates input parameters against expected structural schemas, and checks for malicious command anomalies. Upon successful validation, the extension executes the action directly within the tab context.Validation & Reliability Framework 🔒To ensure operational stability and prevent erratic behavioral loops, PicoBrowser enforces strict validation checks across both local and remote model interfaces:Target PipelineValidation TypeEnforcement MechanismLocal Model InputsPre-Inference SanitizationContext truncation, UTF-8 normalization, and memory buffer bounds checking.Local Model OutputsToken Boundaries & Entity MatchingProbability thresholding on NER classification tensors to prevent false-positive masking.LLM Agent PromptsInput Schema VerificationStructured JSON formatting enforcement and systemic system prompt guardrails.LLM Agent ActionsOutput Action ValidationAbstract Syntax Tree (AST) validation of action payloads to prevent injection attacks.DOM Execution LayerSelector & Mutation InspectionVerification of target DOM node visibility, interaction state, and post-action layout diffing.Installation, Build, & Deployment Guide 🚀System PrerequisitesExecuting and compiling PicoBrowser requires a modern Node.js development runtime equipped with WebGPU-compatible web browsers.Node.js: Version v22.12.0 or higher.pnpm: Version v9.15.1 or higher.Browser: Google Chrome (v113+ for stable WebGPU) or Microsoft Edge.Building from SourceBash# Clone the repository
+git clone https://github.com/rathod-tirth/picobrowser.git
+
+# Navigate into the project root directory
+cd picobrowser
+
+# Install project dependencies
+pnpm install
+
+# Build the production extension bundle
+pnpm build
+Upon successful compilation, Vite packages the extension assets, WASM binaries, and manifest declarations into the dist/ output directory.Extension Side-Loading ProcedureOpen Google Chrome and navigate to chrome://extensions/.Locate and toggle the Developer mode switch in the upper right corner.Click the Load unpacked button located on the top left action bar.In the file selection dialog, choose the generated dist/ directory.Access PicoBrowser by clicking the extension icon in the Chrome toolbar to open the interactive side panel.Development Hot-Reloading ModeFor active codebase modification and real-time extension debugging, launch the Vite development watcher:Bashpnpm dev
+Model Configuration & Allocation Strategies ⚙️PicoBrowser supports multi-provider model assignment, allowing developers to route different sub-tasks to specialized models based on reasoning requirements and latency parameters.Deployment StrategyPlanner LLMNavigator LLMLocal PII EngineTarget Operational ProfileHigh Accuracy SetupClaude 3.5 SonnetClaude 3.5 Haiku / GPT-4oopenai/privacy-filter (WebGPU)Enterprise workflows involving complex multi-page reasoning.Cost-Optimized SetupGPT-4o-mini / Gemini FlashGemini 2.5 Flashopenai/privacy-filter (WebGPU)Routine web data extraction, form filling, and price tracking.Fully Local SetupOllama (Llama 3.3 70B)Ollama (Qwen 2.5 Coder)openai/privacy-filter (WASM / WebGPU)Air-gapped compliance environments requiring zero cloud egress.Interface & Workflow Visualizations 📸Interactive Side Panel Interface
+Description: The React-based side panel interface displaying real-time conversation threads, agent status updates, and current task execution steps.Local PII Masking Debug Output
+Description: The background model inspection panel illustrating real-time named entity recognition and token masking powered by openai/privacy-filter via WebGPU.Multi-Agent Model & API Settings
+Description: Settings interface for specifying model providers, configuring API keys, and adjusting local ONNX Runtime execution parameters.Security Architecture & Threat Mitigation 🛡️The architectural design of PicoBrowser incorporates specific countermeasures to mitigate vulnerabilities associated with web-based agent execution:1. Indirect Prompt Injection DefenseWeb automation agents frequently interact with untrusted third-party DOM contents that may embed malicious instructions intended to hijack the LLM planner. PicoBrowser counters this vector by requiring the Output Validator module to cross-examine Navigator actions against the isolated high-level plan issued by the Planner LLM, rejecting actions that deviate from expected navigational trajectories.2. Ephemeral Storage LifecycleThe key-value mapping store responsible for holding original PII strings exists strictly within volatile JavaScript heap memory managed by the extension service worker. Sensitive values are never written to disk, persistent browser caches, or unencrypted sync storage (chrome.storage.sync), ensuring complete data destruction upon task completion or service worker termination.3. Client Compute IsolationBy compiling the local PII model to ONNX format and executing it via transformers.js inside sandboxed Web Workers, PicoBrowser isolates machine learning inference from the primary browser rendering engine. This prevents memory contention and ensures that high-throughput tensor calculations do not degrade user interface responsiveness.Strategic Future Outlook 🔮The evolution of PicoBrowser targets deeper integration of client-side machine learning directly within browser extension runtimes. Planned enhancements include the implementation of local quantized visual models (such as WebGPU-accelerated vision-language models) to allow local redaction of sensitive image regions and canvas elements prior to frame streaming. Additionally, ongoing optimization efforts focus on reducing model cold-start latencies, expanding token-classification coverage across multilingual PII datasets, and establishing standardized evaluation benchmarks for privacy-preserving web automation agents.Community & Open Source Attribution 🤝PicoBrowser builds upon foundational open-source engineering achievements across the browser automation and local AI landscapes:NanoBrowser: The base open-source Chrome extension architecture for multi-agent browser control.Browser-Use: Underlying concepts for browser DOM processing and agent automation workflows.Hugging Face: Developers of transformers.js enabling native in-browser neural network execution.OpenAI: Creators of the open-weight openai/privacy-filter PII identification model.
