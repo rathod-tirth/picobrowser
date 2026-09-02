@@ -1,51 +1,144 @@
-PicoBrowser 🛡️🤖: Architecting a Privacy-Preserving AI Web Automation ExtensionPicoBrowser represents a technological advancement in client-side AI web automation, operating as an open-source Google Chrome Extension compliant with Manifest V3 standards. Built upon the foundational multi-agent framework of NanoBrowser, PicoBrowser addresses the critical privacy vulnerabilities inherent in cloud-based web automation by establishing an on-device data sanitization layer. By integrating client-side machine learning via transformers.js, ONNX Runtime Web, and WebGPU hardware acceleration, the extension executes real-time Personally Identifiable Information (PII) detection and redaction using the local openai/privacy-filter token-classification model prior to transmitting contextual payloads to remote Large Language Models (LLMs).Project Overview & Architectural Vision 🌐The rapid emergence of AI-driven web agents has transformed automated browser interaction, enabling autonomous web scraping, form submission, and complex navigational workflows. However, conventional agent architectures require streaming active Document Object Model (DOM) trees, interactive input values, and screen captures directly to external cloud inference APIs. This workflow introduces severe security risks when web pages contain sensitive data such as full names, email addresses, phone numbers, payment credentials, or authentication tokens.PicoBrowser resolves this fundamental conflict between automation capability and data privacy by establishing a localized security boundary within the client runtime. Operating directly within the user's browser, PicoBrowser intercepts all contextual data captured by the agent system. Before any context is exposed to an external network endpoint, a locally hosted neural network evaluates the text stream and replaces sensitive identifiers with ephemeral surrogate tokens. External LLMs operate exclusively on sanitized structural representations. When the cloud-hosted reasoning engine emits navigational or text-entry actions directed at these surrogate tokens, PicoBrowser dynamically re-hydrates the original sensitive values from a secure, local key-value dictionary immediately prior to DOM execution.Core Technical Innovations & Features ✨The system architecture of PicoBrowser incorporates several technical mechanisms designed to achieve high-throughput local inference and deterministic browser control:🛡️ Client-Side PII Masking & Local Unredaction: Executes bidirectional token redaction directly within the extension's execution context using the openai/privacy-filter model. PII entities are replaced with deterministic placeholder tokens, maintaining structural context for the remote LLM while completely insulating sensitive user payload data from third-party observation.⚡ Hardware-Accelerated In-Browser Inference: Utilizes transformers.js bound to ONNX Runtime Web with WebGPU execution providers. This pipeline enables low-latency neural network inference on modern GPUs directly inside the browser environment, bypassing server-side compute dependencies.🤖 Hierarchical Multi-Agent Orchestration: Inherits and refines the multi-agent orchestration architecture of NanoBrowser, splitting operational workloads between a Planner LLM and a Navigator LLM. The Planner breaks down high-level user commands into discrete sub-goals, while the Navigator translates sub-goals into precise DOM element interactions.🔒 Comprehensive Input & Output Validation: Incorporates multi-tier schema and semantic validation layers across all model interactions. Inputs and outputs from both local neural networks and external LLMs undergo runtime validation to prevent prompt injection attacks, schema corruption, and erratic browser actions.🔌 Provider-Agnostic Model Connectivity: Supports arbitrary LLM integration, enabling users to pair client-side privacy filtering with cloud backends (such as OpenAI, Anthropic, or Google Gemini) or locally hosted endpoints (via Ollama, vLLM, or custom OpenAI-compatible interfaces).📦 Modern Extension Stack: Built on Chrome Manifest V3 using TypeScript, React, and Vite bundling to deliver a modular extension architecture with responsive side-panel user interfaces.Technical Stack & Infrastructure Specifications 🛠️The technical stack of PicoBrowser balances low-level client compute efficiency with high-level web agent control. The extension avoids legacy background page patterns by fully adhering to Chrome Manifest V3 service worker models.System LayerTechnology / LibraryFunctional ResponsibilityExtension FrameworkChrome Manifest V3, SidePanel APIHost integration, persistent side-panel rendering, and DOM manipulation.Frontend UI CoreReact 18, TypeScript, ViteInteractive user controls, real-time agent status streaming, and settings management.Local Machine Learningtransformers.js, ONNX Runtime WebClient-side model loading, tensor processing, and token classification execution.Hardware AccelerationWebGPU / WebAssembly (WASM)GPU-accelerated tensor operations within the browser runtime.Local Privacy Modelopenai/privacy-filter[cite: 5]Token-level Named Entity Recognition (NER) for identifying PII boundaries.Base Extension CoreNanoBrowser ArchitectureMulti-agent coordination, page state extraction, and action execution engines.Build & Toolingpnpm, Vite BundlerModule resolution, WebAssembly/ONNX asset management, and extension packaging.End-to-End PII Redaction & Multi-Agent Workflow 🔄The execution lifecycle of a user request within PicoBrowser follows a dual-loop pattern that decouples general cognitive reasoning from sensitive data management.[User Prompt & Page DOM] 
-         │
-         ▼
-┌────────────────────────────────────────────────────────┐
-│ Local WebGPU Runtime (transformers.js / ONNX)         │
-│ Model: openai/privacy-filter                           │
-│ Action: Token Classification & PII Entity Detection    │
-└────────────────────────────────────────────────────────┘
-         │
-         ├───► [Store Original PII Mapping in Local Ephemeral Key-Value Vault]
-         │
-         ▼
-[Sanitized / Redacted Context Payload]
-         │
-         ▼
-┌────────────────────────────────────────────────────────┐
-│ Remote / Local Multi-Agent LLM System                  │
-│ 1. Planner LLM: Decomposes task into sub-goals         │
-│ 2. Navigator LLM: Generates target DOM action schema   │
-└────────────────────────────────────────────────────────┘
-         │
-         ▼
-[Redacted Action Payload: e.g., TYPE "<EMAIL_1>" INTO "#email"]
-         │
-         ▼
-┌────────────────────────────────────────────────────────┐
-│ Local PicoBrowser Security Interceptor                 │
-│ Action: Query Key-Value Vault & Re-hydrate Original PII│
-└────────────────────────────────────────────────────────┘
-         │
-         ▼
-[Unredacted Action Payload: TYPE "user@example.com" INTO "#email"]
-         │
-         ▼
-[Validated DOM Action Execution in Browser Tab]
-1. User Command & Context ExtractionThe execution flow begins when the user submits an natural language command through the React-based side-panel interface. The extension captures the active tab's accessibility tree, DOM layout, and relevant context state.2. Local PII Detection & Token MaskingThe extracted text and user instructions are routed to the local background thread running transformers.js. The openai/privacy-filter model processes the input text as a stream of tokens, identifying entity boundaries corresponding to personal names, email addresses, phone numbers, locations, and financial data. Each detected PII sequence is replaced with a standard identifier token (for example, replacing John Doe with <NAME_1> and john@example.com with <EMAIL_1>).3. Ephemeral Key-Value MappingSimultaneously, PicoBrowser writes the mapping pair (<TOKEN_ID> ↔ Original_PII) to an in-memory storage dictionary managed within the extension's local state. This key-value vault is isolated from external network interfaces and remains scoped to the active task execution context.4. Sanitized Context Transmission & Multi-Agent PlanningThe scrubbed prompt and anonymized DOM context are forwarded to the external LLM pipeline. The multi-agent workflow operates in two phases:The Planner LLM: Reads the anonymized task objective, evaluates the high-level page structure, and constructs a structured plan consisting of logical steps.The Navigator LLM: Receives individual plan steps alongside specific page element selectors to output concrete browser interactions (such as mouse clicks, keyboard entry, or page scrolling).5. Interception & Local UnredactionWhen the Navigator LLM returns an action payload containing token placeholders (such as TYPE "<EMAIL_1>" INTO "#input-email"), PicoBrowser's local execution layer intercepts the command before it reaches the target web page. The extension queries the local key-value store, replaces <EMAIL_1> with john@example.com, and resolves the action payload to its functional state.6. Multi-Tier Validation & Action ExecutionBefore performing the unredacted DOM action, PicoBrowser passes the command through an internal validation system. This module verifies that the target DOM element exists, validates input parameters against expected structural schemas, and checks for malicious command anomalies. Upon successful validation, the extension executes the action directly within the tab context.Validation & Reliability Framework 🔒To ensure operational stability and prevent erratic behavioral loops, PicoBrowser enforces strict validation checks across both local and remote model interfaces:Target PipelineValidation TypeEnforcement MechanismLocal Model InputsPre-Inference SanitizationContext truncation, UTF-8 normalization, and memory buffer bounds checking.Local Model OutputsToken Boundaries & Entity MatchingProbability thresholding on NER classification tensors to prevent false-positive masking.LLM Agent PromptsInput Schema VerificationStructured JSON formatting enforcement and systemic system prompt guardrails.LLM Agent ActionsOutput Action ValidationAbstract Syntax Tree (AST) validation of action payloads to prevent injection attacks.DOM Execution LayerSelector & Mutation InspectionVerification of target DOM node visibility, interaction state, and post-action layout diffing.Installation, Build, & Deployment Guide 🚀System PrerequisitesExecuting and compiling PicoBrowser requires a modern Node.js development runtime equipped with WebGPU-compatible web browsers.Node.js: Version v22.12.0 or higher.pnpm: Version v9.15.1 or higher.Browser: Google Chrome (v113+ for stable WebGPU) or Microsoft Edge.Building from SourceBash# Clone the repository
-git clone https://github.com/rathod-tirth/picobrowser.git
+Here is the complete `README.md` file contents for your project. You can copy the block below and save it directly as `README.md` in your repository root directory:
 
-# Navigate into the project root directory
+# PicoBrowser 🛡️🤖
+
+> **Privacy-Preserving AI Web Automation Chrome Extension**
+
+PicoBrowser is an open-source Google Chrome Extension (built on Manifest V3) that combines client-side AI data sanitization with multi-agent web automation. Built on top of the **NanoBrowser** framework, PicoBrowser redacts Personally Identifiable Information (PII) on-device *before* sending context to Large Language Models (LLMs), ensuring your private data never leaves your browser.
+
+---
+
+## 🌟 Key Features
+
+* **🛡️ Local PII Redaction & Unredaction**: Executes client-side token classification using the `openai/privacy-filter` model to detect and mask sensitive identifiers (names, emails, phones, credentials) before cloud transmission.
+* **⚡ WebGPU & ONNX Acceleration**: Powered by `transformers.js` and ONNX Runtime Web for ultra-fast, local machine learning inference directly inside the browser.
+* **🤖 Multi-Agent Orchestration**: Features a dual-agent architecture separating task strategy (**Planner LLM**) from browser action execution (**Navigator LLM**).
+* **🔒 Ephemeral Unredaction Vault**: Automatically replaces anonymized placeholder tokens back to original values strictly at the execution boundary when performing DOM actions.
+* **🛡️ Robust Input/Output Validation**: Built-in runtime schema and integrity validation across all local models and external LLMs to prevent injection attacks and invalid actions.
+* **🔌 Flexible Model Support**: BYO API keys for OpenAI, Anthropic, Gemini, or connect to local LLMs via Ollama.
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+| --- | --- |
+| **Extension Framework** | Chrome Manifest V3, SidePanel API |
+| **Frontend UI** | React 18, TypeScript, Vite |
+| **Local ML Engine** | `transformers.js`, ONNX Runtime Web |
+| **Hardware Acceleration** | WebGPU / WebAssembly (WASM) |
+| **PII Detection Model** | `openai/privacy-filter` |
+| **Agent Foundation** | NanoBrowser Multi-Agent Engine |
+| **Package Manager** | `pnpm` |
+
+---
+
+## 🔄 How It Works
+
+1. **User Request & DOM Extraction**: The side-panel UI captures user instructions and active tab context (DOM layout/accessibility tree).
+2. **Local PII Redaction**: The background `transformers.js` pipeline runs `openai/privacy-filter` via WebGPU to strip sensitive tokens (e.g., replacing `john@example.com` with `<EMAIL_1>`).
+3. **Key-Value Vault Mapping**: The original values are safely stored in an in-memory ephemeral dictionary within the local extension runtime.
+4. **LLM Multi-Agent Execution**:
+* **Planner LLM**: Decomposes the user prompt into high-level sub-goals.
+* **Navigator LLM**: Translates sub-goals into concrete DOM actions.
+
+
+5. **Local Unredaction**: PicoBrowser intercepts the action payload containing `<EMAIL_1>`, looks up `john@example.com` in the local vault, and restores the original value.
+6. **Validated Action Execution**: The input/output validator checks the payload safety and performs the action on the webpage.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* **Node.js**: `v22.12.0` or higher
+* **pnpm**: `v9.15.1` or higher
+* **Browser**: Google Chrome (v113+ recommended for WebGPU support) or Microsoft Edge
+
+### 1. Build from Sourcebash
+
+# Clone the repository
+
+git clone [https://github.com/rathod-tirth/picobrowser.git](https://github.com/rathod-tirth/picobrowser.git)
+
+# Navigate to project directory
+
 cd picobrowser
 
-# Install project dependencies
+# Install dependencies
+
 pnpm install
 
-# Build the production extension bundle
+# Build the extension
+
 pnpm build
-Upon successful compilation, Vite packages the extension assets, WASM binaries, and manifest declarations into the dist/ output directory.Extension Side-Loading ProcedureOpen Google Chrome and navigate to chrome://extensions/.Locate and toggle the Developer mode switch in the upper right corner.Click the Load unpacked button located on the top left action bar.In the file selection dialog, choose the generated dist/ directory.Access PicoBrowser by clicking the extension icon in the Chrome toolbar to open the interactive side panel.Development Hot-Reloading ModeFor active codebase modification and real-time extension debugging, launch the Vite development watcher:Bashpnpm dev
-Model Configuration & Allocation Strategies ⚙️PicoBrowser supports multi-provider model assignment, allowing developers to route different sub-tasks to specialized models based on reasoning requirements and latency parameters.Deployment StrategyPlanner LLMNavigator LLMLocal PII EngineTarget Operational ProfileHigh Accuracy SetupClaude 3.5 SonnetClaude 3.5 Haiku / GPT-4oopenai/privacy-filter (WebGPU)Enterprise workflows involving complex multi-page reasoning.Cost-Optimized SetupGPT-4o-mini / Gemini FlashGemini 2.5 Flashopenai/privacy-filter (WebGPU)Routine web data extraction, form filling, and price tracking.Fully Local SetupOllama (Llama 3.3 70B)Ollama (Qwen 2.5 Coder)openai/privacy-filter (WASM / WebGPU)Air-gapped compliance environments requiring zero cloud egress.Interface & Workflow Visualizations 📸Interactive Side Panel Interface
-Description: The React-based side panel interface displaying real-time conversation threads, agent status updates, and current task execution steps.Local PII Masking Debug Output
-Description: The background model inspection panel illustrating real-time named entity recognition and token masking powered by openai/privacy-filter via WebGPU.Multi-Agent Model & API Settings
-Description: Settings interface for specifying model providers, configuring API keys, and adjusting local ONNX Runtime execution parameters.Security Architecture & Threat Mitigation 🛡️The architectural design of PicoBrowser incorporates specific countermeasures to mitigate vulnerabilities associated with web-based agent execution:1. Indirect Prompt Injection DefenseWeb automation agents frequently interact with untrusted third-party DOM contents that may embed malicious instructions intended to hijack the LLM planner. PicoBrowser counters this vector by requiring the Output Validator module to cross-examine Navigator actions against the isolated high-level plan issued by the Planner LLM, rejecting actions that deviate from expected navigational trajectories.2. Ephemeral Storage LifecycleThe key-value mapping store responsible for holding original PII strings exists strictly within volatile JavaScript heap memory managed by the extension service worker. Sensitive values are never written to disk, persistent browser caches, or unencrypted sync storage (chrome.storage.sync), ensuring complete data destruction upon task completion or service worker termination.3. Client Compute IsolationBy compiling the local PII model to ONNX format and executing it via transformers.js inside sandboxed Web Workers, PicoBrowser isolates machine learning inference from the primary browser rendering engine. This prevents memory contention and ensures that high-throughput tensor calculations do not degrade user interface responsiveness.Strategic Future Outlook 🔮The evolution of PicoBrowser targets deeper integration of client-side machine learning directly within browser extension runtimes. Planned enhancements include the implementation of local quantized visual models (such as WebGPU-accelerated vision-language models) to allow local redaction of sensitive image regions and canvas elements prior to frame streaming. Additionally, ongoing optimization efforts focus on reducing model cold-start latencies, expanding token-classification coverage across multilingual PII datasets, and establishing standardized evaluation benchmarks for privacy-preserving web automation agents.Community & Open Source Attribution 🤝PicoBrowser builds upon foundational open-source engineering achievements across the browser automation and local AI landscapes:NanoBrowser: The base open-source Chrome extension architecture for multi-agent browser control.Browser-Use: Underlying concepts for browser DOM processing and agent automation workflows.Hugging Face: Developers of transformers.js enabling native in-browser neural network execution.OpenAI: Creators of the open-weight openai/privacy-filter PII identification model.
+
+```
+
+This compiles the production assets into the `dist/` directory.
+
+---
+
+### 2. Add PicoBrowser to Chrome (Developer Mode) 🔌
+
+Follow these steps to load the compiled extension into Google Chrome:
+
+1. Open Google Chrome and navigate to `chrome://extensions/` in the address bar.
+2. In the top-right corner, turn on **Developer mode** using the toggle switch.
+3. Click the **Load unpacked** button in the upper-left action bar.
+4. In the file picker dialog, select the **`dist/`** folder inside your cloned `picobrowser` directory and click **Select Folder**.
+5. PicoBrowser will now appear on your extensions page.
+6. Click the extension puzzle icon (🧩) in the Chrome toolbar, locate **PicoBrowser**, and pin it.
+7. Click the PicoBrowser icon to open the interactive side panel interface.
+
+> 💡 **Development Tip**: If you are actively modifying code, run `pnpm dev` for hot-reloading. To reflect changes in Chrome, go back to `chrome://extensions/` and click the **Reload** (🔄) icon on the PicoBrowser card.
+
+---
+
+## ⚙️ Recommended Agent Configurations
+
+You can assign different LLMs to the Planner and Navigator roles in the extension settings:
+
+| Strategy | Planner LLM | Navigator LLM | Local PII Engine |
+| :--- | :--- | :--- | :--- |
+| **High Accuracy** | Claude 3.5 Sonnet | Claude 3.5 Haiku / GPT-4o | `openai/privacy-filter` (WebGPU) |
+| **Cost-Optimized** | GPT-4o-mini | Gemini 2.5 Flash | `openai/privacy-filter` (WebGPU) |
+| **Fully Local** | Ollama (Llama 3.3 70B) | Ollama (Qwen 2.5 Coder) | `openai/privacy-filter` (WASM/WebGPU) |
+
+---
+
+## 📸 Screenshots & Demos
+
+*(Screenshots coming soon)*
+
+| Side Panel Interface | Local PII Debug Logs | Settings & Model Setup |
+| :---: | :---: | :---: |
+| ![Side Panel UI]() | ![PII Redaction Log]() | ![Settings Panel]() |
+
+---
+
+## 🔒 Security & Privacy Guarantees
+
+- **Zero Cloud PII Egress**: All entity identification and token masking occurs on your device before network requests are dispatched.
+- **In-Memory Vault**: Redaction mapping pairs exist only in volatile JavaScript memory and are purged automatically when the task finishes.
+- **Strict Validation**: Both input prompts and LLM-generated actions are validated against rigid structural schemas to prevent prompt injection and unauthorized DOM manipulation.
+
+---
+
+## 🤝 Acknowledgments & Credits
+
+PicoBrowser is built on top of amazing open-source technologies:
+
+- **[NanoBrowser](https://github.com/nanobrowser/nanobrowser)** - Base Chrome extension architecture for multi-agent web automation.
+- **[Hugging Face transformers.js](https://github.com/huggingface/transformers.js)** - In-browser ML model execution environment.
+- **[OpenAI Privacy Filter](https://huggingface.co/openai/privacy-filter)** - Open-weight PII token classification model.
+- **[Browser-Use](https://github.com/browser-use/browser-use)** - Automation inspiration and DOM processing concepts.
+
+---
+
+## 📄 License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+
+```
